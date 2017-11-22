@@ -11,7 +11,8 @@
 
         var tanda = new google.maps.Marker({
             position: latlng,
-            map: map
+            map: map,
+            icon: 'img/tanda1.png'
         }); 
     }
 </script>

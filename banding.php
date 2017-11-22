@@ -1,6 +1,6 @@
 <?php
     $title = "PERBANDINGAN";
-    $aktifBanding = "w3-light-grey";
+    $aktifBanding = "w3-yellow";
     include "atas.php";
     include "config.php";
 
@@ -201,11 +201,11 @@
             <b class="w3-xxlarge">KAMI MEREKOMENDASIKAN MENYEWA KOST DARI
             <?php
                 if($nilai_kost1 > $nilai_kost2) {
-                    echo strtoupper($nama1);
+                    echo "<a href='tampil.php?id=". $data1 ."'>".strtoupper($nama1)."</a>";
                 } elseif($nilai_kost1 < $nilai_kost2) {
-                    echo strtoupper($nama2);
+                    echo "<a href='tampil.php?id=". $data2 ."'>".strtoupper($nama2)."</a>";
                 } else {
-                    echo strtoupper($nama1)."/".strtoupper($nama2)." PILIHLAH YANG TERDEKAT";
+                    echo "<a href='tampil.php?id=". $data1 ."'>".strtoupper($nama1)."/<a href='tampil.php?id=". $data2 ."'>".strtoupper($nama2)." PILIHLAH YANG TERDEKAT";
                 }
             ?>
             !</b>

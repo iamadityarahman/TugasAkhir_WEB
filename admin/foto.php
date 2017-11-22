@@ -12,14 +12,14 @@
 <header class="w3-container" style="padding-top:22px">
     <h2><b><i class="fa fa-image"></i> MANAJEMEN FOTO KOST&nbsp;/&nbsp;<?=$um['nama']?></b></h2>
 </header>
-<div class="w3-container">
+<div class="w3-container w3-margin-bottom">
 	<div class="w3-row">
 		<div class="w3-col s6">
 			<h3><b>Foto profile</b></h3>
 			<div class="w3-container">
 				<form method="POST" enctype="multipart/form-data">
 					<div class="w3-col s8">
-						<input type="file" name="fotoKT" class="w3-input w3-margin-bottom"/>
+						<input accept="image/jpeg" type="file" name="fotoKT" class="w3-input w3-margin-bottom"/>
 					</div>
 					<div class="w3-col s4">
 						<input type="submit" name="updateKT" class="w3-bar w3-button w3-green" value="UPDATE"/>
@@ -32,7 +32,7 @@
 			<div class="w3-container">
 				<form method="POST" enctype="multipart/form-data">
 					<div class="w3-col s8">
-						<input type="file" name="fotoKM" class="w3-input w3-margin-bottom"/>
+						<input accept="image/jpeg" type="file" name="fotoKM" class="w3-input w3-margin-bottom"/>
 					</div>
 					<div class="w3-col s4">
 						<button type="submit" name="updateKM" class="w3-bar w3-button w3-green">UPDATE</button>
@@ -58,7 +58,7 @@
 				</div>
 				<form method="POST" enctype="multipart/form-data">
 					<div class="w3-col s8">
-						<input type="file" name="foto360" class="w3-input" required/>
+						<input accept="image/jpeg" type="file" name="foto360" class="w3-input" required/>
 					</div>
 					<div class="w3-col s2">
 						<input type="submit" name="tambah360" class="w3-button w3-green w3-right w3-bar" value="TAMBAH" />
@@ -71,42 +71,41 @@
 				</div>
 				<form method="POST" enctype="multipart/form-data">
 					<div class="w3-col s8">
-						<input type="file" name="fotoBiasa" class="w3-input" required/>
+						<input accept="image/jpeg" type="file" name="fotoBiasa" class="w3-input" required/>
 					</div>
 					<div class="w3-col s2">
 						<input type="submit" name="tambahBiasa" class="w3-button w3-green w3-right w3-bar" value="TAMBAH" />
 					</div>
 				</form>
 			</div>
-		<hr/>
-		<div class="w3-row w3-margin-top">
+		<div class="w3-row w3-margin-top w3-margin-bottom">
 			<?php
 				include "config.php";
 				
-				$hah = mysql_query("SELECT * FROM fotoFoto WHERE id = $_GET[id]");
+				$hah = mysql_query("SELECT COUNT(*) AS jumlah FROM fotoFoto WHERE id = $_GET[id]");
 				$kik = mysql_fetch_array($hah);
 
-				if($kik == null) { ?>
-				<h2>Tidak terdapat foto tambahan!!!</h2>
-			<?
-				} else {
-					$sqlrr = mysql_query("SELECT * FROM fotoFoto WHERE id = $_GET[id] AND jenis = 'biasa'");
-					while($hjk = mysql_fetch_array($sqlrr)) { ?>
-						<div class="w3-quarter w3-margin-button">
-							<div style="width:200px;height:200px;overflow:hidden;">
-								<img src="<?=$hjk['namaFoto']?>" style="height: 200px;"/>
-							</div>
-					      	<button onclick="window.open('./admin/hapusFoto.php?id=<?=$_GET['id']?>&idhapus=<?=$hjk['x']?>', '_SELF')" class="w3-button w3-red w3-center" style="width: 200px;margin-top: 5px;">HAPUS</button>
-				      	</div>
-	      	<? } 	
-	      			$sqluu = mysql_query("SELECT * FROM fotoFoto WHERE id = $_GET[id] AND jenis = '360'");
-	      			while($jkl = mysql_fetch_array($sqluu)) { ?>
-	  					<div class="w3-quarter w3-margin-button">
-							<iframe width="200px" height="200px" allowfullscreen style="border-style:none;" src="./htm/pannellum.htm?panorama=http://localhost/kost/<?=$jkl['namaFoto']?>&amp;autoLoad=true"></iframe>
-							<button onclick="window.open('./admin/hapusFoto.php?id=<?=$_GET['id']?>&idhapus=<?=$jkl['x']?>', '_SELF')" class="w3-button w3-red w3-center" style="width: 200px;margin-top: 5px;">HAPUS</button>
-				      	</div>    				
+				if($kik['jumlah'] == "0") {
+					echo "<hr/>";
+				}
 
-	      	<? }} ?>
+				$sqlrr = mysql_query("SELECT * FROM fotoFoto WHERE id = $_GET[id] AND jenis = 'biasa'");
+				while($hjk = mysql_fetch_array($sqlrr)) { ?>
+					<div class="w3-quarter w3-margin-button">
+						<div style="width:200px;height:200px;overflow:hidden;">
+							<img src="<?=$hjk['namaFoto']?>" style="height: 200px;"/>
+						</div>
+				      	<button onclick="window.open('./admin/hapusFoto.php?id=<?=$_GET['id']?>&idhapus=<?=$hjk['x']?>', '_SELF')" class="w3-button w3-red w3-center" style="width: 200px;margin-top: 5px;">HAPUS</button>
+			      	</div>
+      		<? } 	
+      			$sqluu = mysql_query("SELECT * FROM fotoFoto WHERE id = $_GET[id] AND jenis = '360'");
+      			while($jkl = mysql_fetch_array($sqluu)) { ?>
+  					<div class="w3-quarter w3-margin-button">
+						<iframe width="200px" height="200px" allowfullscreen style="border-style:none;" src="./htm/pannellum.htm?panorama=http://localhost/kost/<?=$jkl['namaFoto']?>&amp;autoLoad=true"></iframe>
+						<button onclick="window.open('./admin/hapusFoto.php?id=<?=$_GET['id']?>&idhapus=<?=$jkl['x']?>', '_SELF')" class="w3-button w3-red w3-center" style="width: 200px;margin-top: 5px;">HAPUS</button>
+			      	</div>    				
+
+	      	<? } ?>
 		</div>
 	</div>
 </div>

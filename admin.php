@@ -5,7 +5,7 @@
                     window.open('./index.php', '_SELF');
                 </script>";
     }
-    include "./config.php";
+    include "config.php";
     include "admin/updateData.php";
     if(!isset($_GET['page']) || $_GET['page'] == "home") {
         $namaHalaman = "KOST-QU MYADMIN";
@@ -45,7 +45,7 @@
     <div class="w3-bar w3-top w3-teal w3-xlarge" style="z-index:4">
         <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
         <span class="w3-bar-item w3-left">KOST-QU MYADMIN</span>
-        <a href="./admin/logout.php" class="w3-bar-item w3-right w3-margin-right w3-hover-red">
+        <a href="./admin/logout.php" class="w3-bar-item w3-right w3-margin-right w3-hover-black">
             <i class="fa fa-sign-out" aria-hidden="true"></i>
         </a>
     </div>

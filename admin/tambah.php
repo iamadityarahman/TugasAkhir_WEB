@@ -22,27 +22,27 @@
             </div>
             <div class="w3-row w3-section">
                 <label class="w3-text-dark-grey"><b>Harga perbulan:</b></label>
-                <input class="w3-input w3-border" type="text" name="harga"/>
+                <input class="w3-input w3-border" type="text" name="harga" required/>
             </div>
             <div class="w3-row w3-section">
                 <label class="w3-text-dark-grey"><b>Kapasitas kost:</b></label>
-                <input class="w3-input w3-border" type="text" name="kapasitas"/>
+                <input class="w3-input w3-border" type="text" name="kapasitas" required/>
             </div>            
             <div class="w3-row w3-section">
                 <label class="w3-text-dark-grey"><b>No ponsel:</b></label>
-                <input class="w3-input w3-border" type="text" name="phone"/>
+                <input class="w3-input w3-border" type="text" name="phone" required/>
             </div>
             <div class="w3-row w3-section">
                 <label class="w3-text-dark-grey"><b>Alamat email:</b></label>
-                <input class="w3-input w3-border" type="text" name="email"/>
+                <input class="w3-input w3-border" type="text" name="email" required/>
             </div>
             <div class="w3-row w3-section">
-                    <label class="w3-text-dark-grey"><b>Foto profile:</b></label>
-                    <input class="w3-input w3-border" type="file" name="fotoProfile"/>
+                <label class="w3-text-dark-grey"><b>Foto profile:</b></label>
+                <input accept="image/jpeg" class="w3-input w3-border" type="file" name="fotoProfile" required/>
             </div>
             <div class="w3-row w3-section">
                 <label class="w3-text-dark-grey"><b>Foto kamar (360):</b></label>
-                <input class="w3-input w3-border" type="file" name="fotoHeader"/>
+                <input accept="image/jpeg" class="w3-input w3-border" type="file" name="fotoHeader" required/>
             </div>
 
             <hr/>
@@ -238,7 +238,8 @@
         var marker = new google.maps.Marker({
             position: posisi,
             title: 'dragMe',
-            draggable: true
+            draggable: true,
+            icon: 'img/tanda2.png'
         });
 
         var isiNya = "<h1>Drag Me!</h1>";

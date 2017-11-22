@@ -8,10 +8,6 @@
 		<!-- load stlye dari 23 -->
 		<link rel="stylesheet" type="text/css" href="./css/w3.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-			
-		<!-- load gambar 360 -->
-        <script src="./js/three.min.js"></script>
-		<script src="./js/photo-sphere-viewer.min.js"></script>
 
 		<!-- load bootsrap -->
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -24,8 +20,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 
 		<!-- load pannellum -->
-		<script src="./js/pannellum.js"></script>
-		<link rel="stylesheet" href="./css/pannellum.css">
+		<script src="js/pannellum.js"></script>
+		<link rel="stylesheet" href="css/pannellum.css">
 
 		<style>
 			/** lain lain **/
@@ -74,32 +70,51 @@
 			}
 			/* auto komplit sampai sini */
 
+			.warna-1 {
+				background-color: #001a75;
+				color: white;
+			}
+
 
 		</style>
   </head>
   <body>
 <!-- membuat bar -->
 <div class="w3-top">
-	<div class="w3-bar w3-dark-grey w3-xlarge" style="letter-spacing:4px;">
-		<div class="w3-bar-item"><b>KOST-QU</b></div>
-		<a href="./index.php" class="w3-bar-item w3-hover-red w3-button <?=$home?>">
+	<div class="w3-bar w3-xlarge warna-1" style="letter-spacing:4px;">
+		<button href="javascript:void(0)" class="w3-left w3-bar-item w3-button w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</button>
+
+		<div class="w3-bar-item"><b>KOS-Q</b></div>
+
+		<button onclick="location.href='index.php'" class="w3-hide-small w3-hover-dark-grey w3-bar-item w3-hover-red w3-button <?=$home?>">
 			<i class="fa fa-home" aria-hidden="true"></i>
-		</a>
-		<a href="./banding.php" class="w3-bar-item w3-hover-yellow w3-text-white  <?=$aktifBanding?>">
-			<b>VERSUS</b>
-		</a>
+		</button>
+
+		<button onclick="location.href='banding.php'" class="w3-hide-small w3-bar-item w3-button w3-hover-dark-grey <?=$aktifBanding?>">
+			<b>BANDINGKAN</b>
+		</button>
 
 		<!-- tombol login -->
 		<?php if(isset($_SESSION['user']) && isset($_SESSION['pass'])) { ?>
-			<button onclick="window.open('admin.php', '_SELF')" class="w3-bar-item w3-dark-grey w3-right w3-margin-right w3-hover-green">
+			<button onclick="window.open('admin.php', '_SELF')" class="w3-hover-dark-grey w3-bar-item w3-right w3-margin-right w3-button">
 				<i class="fa fa-user-circle-o w3-text-white" aria-hidden="true"></i>
 			</button>
 			<?php } else { ?>
-			<button onclick="document.getElementById('formulir').style.display='block'" class="w3-bar-item w3-dark-grey w3-right w3-margin-right w3-hover-green">
-				<i class="fa fa-user-circle-o w3-text-white" aria-hidden="true"></i>
+			<button onclick="document.getElementById('formulir').style.display='block'" class="w3-hover-dark-grey w3-bar-item w3-right w3-margin-right w3-button">
+				<i class="fa fa-user-circle-o" aria-hidden="true"></i>
 			</button>
-			<?php } ?>
+		<?php } ?>
 	</div>
+
+	<div id="demo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium warna-1">
+	 	<button onclick="location.href='index.php'" class="w3-hover-dark-grey w3-bar-item w3-hover-red w3-button <?=$home?>">
+			<b>HOME</b>
+		</button>
+		<button onclick="location.href='banding.php'" class="w3-bar-item w3-button w3-hover-dark-grey <?=$aktifBanding?>">
+			<b>BANDINGKAN</b>
+		</button>
+	</div>
+
 </div>
 
 <!-- form login -->
@@ -115,9 +130,9 @@
 				<fieldset style="border-style:hidden">
 					<div class="w3-section">
 						<label><b>Username</b></label>
-						<input class="w3-input w3-border w3-margin-bottom" type="text" name="user">
+						<input class="w3-input w3-border w3-margin-bottom" type="text" name="user" id="user"/>
 						<label><b>Password</b></label>
-						<input class="w3-input w3-border w3-margin-bottom" type="password" name="pass">
+						<input class="w3-input w3-border w3-margin-bottom" type="password" name="pass" id="pass"/>
 					</div>
 				</fieldset>
 			</form>
@@ -133,6 +148,16 @@
 		</div>
 </div>
 <script>
+	function myFunction() {
+	    var x = document.getElementById("demo");
+	    if (x.className.indexOf("w3-show") == -1) {
+	        x.className += " w3-show";
+	    } else { 
+	        x.className = x.className.replace(" w3-show", "");
+	    }
+	}
+
+
 	 $(function() {
 		$("button#login").click(function(){
 		   	$.ajax({
@@ -141,13 +166,31 @@
 				data: $('form#formLogin').serialize(),
         		success: function(msg){
  	          		$("#warningLogin").html(msg);
- 		        	document.getElementById('formulir').style.display=('block');	
+ 		        	document.getElementById('formulir').style.display=('block');
+ 		        	window.open('admin.php', '_SELF')
  		        },
 				error: function(){
 					$("#gagalLogin").html("<div class='w3-bar w3-red w3-center w3-padding'><b>GAGAL LOGIN!</b></div>");
 				}
       		});
 		});
+		$("#formLogin input").keydown(function(e) {
+			if (e.keyCode == 13) {
+				$.ajax({
+	    		   	type: "POST",
+					url: "prosesLogin.php",
+					data: $('form#formLogin').serialize(),
+	        		success: function(msg){
+	 	          		$("#warningLogin").html(msg);
+	 		        	document.getElementById('formulir').style.display=('block');
+	 		        	window.open('admin.php', '_SELF')
+	 		        },
+					error: function(){
+						$("#gagalLogin").html("<div class='w3-bar w3-red w3-center w3-padding'><b>GAGAL LOGIN!</b></div>");
+					}
+	      		});
+			}
+		})
 	});
 </script>
 

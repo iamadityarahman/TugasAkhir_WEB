@@ -257,8 +257,8 @@
 
         var marker = new google.maps.Marker({
             position: posisi,
-            title: 'kuda',
-            draggable: true
+            draggable: true,
+            icon: 'img/tanda2.png'
         });
 
         var isiNya = "<h1>Drag Me!</h1>";

@@ -14,9 +14,13 @@
 			$_SESSION['user'] = $_POST['user'];
 			$_SESSION['pass'] = $_POST['pass'];
 			$_SESSION['waktu'] = time();
-			echo "	<div class='w3-bar w3-green w3-center w3-padding'><b>LOGIN BERHASIL...!!!</b></div>
-					<script>window.open('admin.php', '_SELF');</script>
-			";
+			echo "	<div class='w3-bar w3-green w3-center w3-padding'><b>LOGIN BERHASIL...!!!</b></div>";
+		} elseif($_POST['user'] == null && $_POST['pass'] == null) {
+			echo "<div class='w3-bar w3-red w3-center w3-padding'><b>USERNAME & PASSWORD KOSONG...!!!</b></div>";
+		} elseif($_POST['user'] == null) {
+			echo "<div class='w3-bar w3-red w3-center w3-padding'><b>USERNAME KOSONG...!!!</b></div>";
+		} elseif($_POST['pass'] == null) {
+			echo "<div class='w3-bar w3-red w3-center w3-padding'><b>PASSWORD KOSONG...!!!</b></div>";
 		} else {
 			echo "<div class='w3-bar w3-red w3-center w3-padding'><b>PASSWORD/USERNAME SALAH...!!!</b></div>";
 		}
