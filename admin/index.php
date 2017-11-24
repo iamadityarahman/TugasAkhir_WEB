@@ -1,12 +1,8 @@
 <?php
     session_start();
-    if(!isset($_SESSION['user']) && !isset($_SESSION['pass'])) {
-        echo "  <script>
-                    window.open('./index.php', '_SELF');
-                </script>";
-    }
-    include "config.php";
-    include "admin/updateData.php";
+    
+    include "../config.php";
+    include "updateData.php";
     if(!isset($_GET['page']) || $_GET['page'] == "home") {
         $namaHalaman = "KOST-QU MYADMIN";
     } elseif($_GET['page'] == "edit") {
@@ -15,10 +11,12 @@
         $namaHalaman = "DAFTAR KOST";
     } elseif($_GET['page'] == "tambah") {
         $namaHalaman = "TAMBAH KOST";
-    } elseif($_GET['page'] == "user") {
-        $namaHalaman = "MANAJEMEN USER";
+    } elseif($_GET['page'] == "userAdmin") {
+        $namaHalaman = "MANAJEMEN USER ADMIN";
     } elseif($_GET['page'] == "foto") {
         $namaHalaman = "MANAJEMEN FOTO KOST";
+    } elseif($_GET['page'] == "userBiasa") {
+        $namaHalaman = "MANAJEMEN USER BIASA";
     }
 ?>
 
@@ -28,7 +26,7 @@
         <title><?=$namaHalaman?></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./css/w3.css">
+        <link rel="stylesheet" href="../css/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
@@ -53,9 +51,9 @@
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-collapse w3-teal" style="z-index:3;width:300px;margin-top:20px;" id="mySidebar"><br>
         <div class="w3-container w3-center">
-            <img src="./img/admin.ico" class="w3-image w3-circle w3-white" style="width: 100px" />
+            <img src="../img/admin.ico" class="w3-image w3-circle w3-white" style="width: 100px" />
             <div class="w3-row-padding w3-margin-top w3-margin-bottom">
-                    <button onclick="window.open('index.php', '_SELF')" class="w3-button w3-yellow w3-black">SITE</button>
+                    <button onclick="window.open('../index.php', '_SELF')" class="w3-button w3-yellow w3-black">SITE</button>
                     <button class="w3-button w3-yellow w3-black">PROFILE</button>
             </div>
         </div>
@@ -64,7 +62,8 @@
             <a href="?page=home" class="w3-bar-item w3-hover-white w3-button w3-padding <? if($_GET['page'] == "home") echo "w3-black" ?>"><i class="fa fa-home fa-fw"></i>  Home</a>
             <a href="?page=tambah" class="w3-bar-item w3-hover-white w3-button w3-padding <? if($_GET['page'] == "tambah") echo "w3-black" ?>"><i class="fa fa-plus fa-fw"></i>  Tambah Kost</a>
             <a href="?page=daftar" class="w3-bar-item w3-hover-white w3-button w3-padding <? if($_GET['page'] == "daftar" || $_GET['page'] == "edit" || $_GET['page'] == "foto") echo "w3-black" ?>"><i class="fa fa-wrench fa-fw"></i>  Manajemen Kost</a>
-            <a href="?page=user" class="w3-bar-item w3-hover-white w3-button w3-padding <? if($_GET['page'] == "user") echo "w3-black" ?>"><i class="fa fa-users fa-fw"></i>  Manajemen User</a>
+            <a href="?page=userAdmin" class="w3-bar-item w3-hover-white w3-button w3-padding <? if($_GET['page'] == "userAdmin") echo "w3-black" ?>"><i class="fa fa-users fa-fw"></i>  Manajemen User Admin</a>
+            <a href="?page=userBiasa" class="w3-bar-item w3-hover-white w3-button w3-padding <? if($_GET['page'] == "userBiasa") echo "w3-black" ?>"><i class="fa fa-users fa-fw"></i>  Manajemen User Biasa</a>
         </div>
     </nav>
 
@@ -76,19 +75,21 @@
     <div class="w3-main" style="margin-left:300px;margin-top:30px;">
         <?php
             if (!isset($_GET['page'])) {
-                include "./admin/home.php";
+                include "home.php";
             } elseif($_GET['page'] == "tambah") {
-                include "./admin/tambah.php";
+                include "tambah.php";
             } elseif($_GET['page'] == "daftar") {
-                include "./admin/daftar.php";
+                include "daftar.php";
             } elseif($_GET['page'] == "home") {
-                include "./admin/home.php";
+                include "home.php";
             } elseif($_GET['page'] == "edit") {
-                include "./admin/edit.php";
-            } elseif($_GET['page'] == "user") {
-                include "./admin/user.php";
+                include "edit.php";
+            } elseif($_GET['page'] == "userAdmin") {
+                include "userAdmin.php";
             } elseif($_GET['page'] == "foto") {
-                include "./admin/foto.php";
+                include "foto.php";
+            } elseif($_GET['page'] == "userBiasa") {
+                include "userBiasa.php";
             }
         ?>
     </div>

@@ -29,16 +29,16 @@
     <ul class="w3-ul">
         <?php while ($xyz = mysql_fetch_array($sqlAmbil)) { $id = $xyz['id']; ?>
         <li class="w3-bar w3-border-bottom">
-            <span onclick="window.open('./admin/remove.php?id=<?=$xyz['id']?>', '_SELF')" class="w3-bar-item w3-button w3-red w3-xlarge w3-right">
+            <span onclick="window.open('remove.php?id=<?=$xyz['id']?>', '_SELF')" class="w3-bar-item w3-button w3-red w3-xlarge w3-right">
                 <i class="fa fa-ban" aria-hidden="true"></i>
             </span>
-            <span onclick="window.open('admin.php?page=edit&id=<?=$xyz['id']?>', '_SELF')" class="w3-margin-right w3-bar-item w3-button w3-green w3-xlarge w3-right">
+            <span onclick="window.open('?page=edit&id=<?=$xyz['id']?>', '_SELF')" class="w3-margin-right w3-bar-item w3-button w3-green w3-xlarge w3-right">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
             </span>            
-            <span onclick="window.open('admin.php?page=foto&id=<?=$id?>', '_SELF')" class="w3-margin-right w3-bar-item w3-button w3-blue w3-xlarge w3-right">
+            <span onclick="window.open('?page=foto&id=<?=$id?>', '_SELF')" class="w3-margin-right w3-bar-item w3-button w3-blue w3-xlarge w3-right">
                 <i class="fa fa-image" aria-hidden="true"></i>
             </span>
-            <img src="<?=$xyz['fotoKT']?>" class="w3-bar-item w3-circle w3-hide-small" style="width:85px;">
+            <img src="../<?=$xyz['fotoKT']?>" class="w3-bar-item w3-circle w3-hide-small" style="width:85px;">
             <div class="w3-bar-item">
                 <span class="w3-large"><?=$xyz['nama']?></span><br>
                 <span>Rp. <?=number_format($xyz['harga'], 0, '.', '.')?>,-/bulan</span>

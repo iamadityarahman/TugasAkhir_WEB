@@ -1,6 +1,6 @@
 <?php
     $title = "PERBANDINGAN";
-    $aktifBanding = "w3-yellow";
+    $aktifBanding = "w3-theme";
     include "atas.php";
     include "config.php";
 
@@ -144,7 +144,7 @@
         </div>
         <div class="w3-third w3-center">
             <div class="w3-row w3-section">
-                <input class="w3-button w3-green" type="submit" value="BANDINGKAN"/>
+                <input class="w3-button w3-theme-dark w3-hover-theme" type="submit" value="BANDINGKAN"/>
             </div>
         </div>
         <div class="w3-third w3-right">
@@ -222,7 +222,7 @@
         <!-- nama kost -->
         <div class="w3-row-padding">
             <div class="w3-half">
-                <div class="w3-bar w3-blue">
+                <div onclick="location.href='tampil.php?id=<?=$data1?>'" class="w3-bar w3-theme-d3 w3-hover-theme">
                     <div class="w3-center w3-xlarge w3-margin">
                         <b><?=strtoupper($nama1)?></b>
                     </div>
@@ -230,7 +230,7 @@
             </div>
 
             <div class="w3-half">
-                <div class="w3-bar w3-cyan">
+                <div onclick="location.href='tampil.php?id=<?=$data2?>'" class="w3-bar w3-theme-d3 w3-hover-theme">
                     <div class="w3-center w3-xlarge w3-margin">
                         <b><?=strtoupper($nama2)?></b>
                     </div>
@@ -246,10 +246,10 @@
                         <span class="w3-text"><b>KEBERSIHAN&nbsp;</b></span>
                         <?php
                                 for($a=0; $a<$kebersihan1; $a++) {
-                                    echo "<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>";
+                                    echo "<span class='w3-large fa fa-star checked'></span>";
                                 }
                                 for($a=0; $a<abs($kebersihan1-5); $a++) {
-                                    echo "<i class='fa fa-star-o' aria-hidden='true' style='color:gray;'></i>";
+                                    echo "<span class='w3-large fa fa-star'></span>";
                                 }
                         ?>
                     </div>
@@ -262,10 +262,10 @@
                         <span class="w3-text"><b>KEBERSIHAN&nbsp;</b></span>
                         <?php
                                 for($a=0; $a<$kebersihan2; $a++) {
-                                    echo "<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>";
+                                    echo "<span class='w3-large fa fa-star checked'></span>";
                                 }
                                 for($a=0; $a<abs($kebersihan2-5); $a++) {
-                                    echo "<i class='fa fa-star-o' aria-hidden='true' style='color:gray;'></i>";
+                                    echo "<span class='w3-large fa fa-star'></span>";
                                 }
                         ?>
                     </div>
@@ -280,10 +280,10 @@
                         <span class="w3-text"><b>KEAMANAN&nbsp;</b></span>
                         <?php
                                 for($a=0; $a<$keamanan1; $a++) {
-                                    echo "<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>";
+                                    echo "<span class='w3-large fa fa-star checked'></span>";
                                 }
                                 for($a=0; $a<abs($keamanan1-5); $a++) {
-                                    echo "<i class='fa fa-star-o' aria-hidden='true' style='color:gray;'></i>";
+                                    echo "<span class='w3-large fa fa-star'></span>";
                                 }
                         ?>
                     </div>
@@ -296,10 +296,10 @@
                         <span class="w3-text"><b>KEAMANAN&nbsp;</b></span>
                         <?php
                                 for($a=0; $a<$keamanan2; $a++) {
-                                    echo "<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>";
+                                    echo "<span class='w3-large fa fa-star checked'></span>";
                                 }
                                 for($a=0; $a<abs($keamanan2-5); $a++) {
-                                    echo "<i class='fa fa-star-o' aria-hidden='true' style='color:gray;'></i>";
+                                    echo "<span class='w3-large fa fa-star'></span>";
                                 }
                         ?>
                     </div>
@@ -315,10 +315,10 @@
                         <span class="w3-text"><b>KENYAMANAN&nbsp;</b></span>
                         <?php
                                 for($a=0; $a<$kenyamanan1; $a++) {
-                                    echo "<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>";
+                                    echo "<span class='w3-large fa fa-star checked'></span>";
                                 }
                                 for($a=0; $a<abs($kenyamanan1-5); $a++) {
-                                    echo "<i class='fa fa-star-o' aria-hidden='true' style='color:gray;'></i>";
+                                    echo "<span class='w3-large fa fa-star'></span>";
                                 }
                         ?>
                     </div>
@@ -331,10 +331,10 @@
                         <span class="w3-text"><b>KENYAMANAN&nbsp;</b></span>
                         <?php
                                 for($a=0; $a<$kenyamanan2; $a++) {
-                                    echo "<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>";
+                                    echo "<span class='w3-large fa fa-star checked'></span>";
                                 }
                                 for($a=0; $a<abs($kenyamanan2-5); $a++) {
-                                    echo "<i class='fa fa-star-o' aria-hidden='true' style='color:gray;'></i>";
+                                    echo "<span class='w3-large fa fa-star'></span>";
                                 }
                         ?>
                     </div>
@@ -534,6 +534,9 @@
 <?php
     }
 ?>
+
+
+
 <?php
     if(!isset($_GET['data1']) && !isset($_GET['data2'])) {
 ?>
@@ -542,19 +545,45 @@
         <b class="w3-xxlarge">MASUKAN NAMA KOST UNTUK DIBANDINGKAN!!!</b>
     </div>
 </div>
-<div class="w3-bottom">
-    <div class="w3-bar w3-dark-grey w3-large w3-padding-large">
-        Copyright © 2017 <a href='http://google.com'>KOST-QU</a>
+
+<div class="w3-bar w3-theme-light w3-center w3-bottom w3-border-theme w3-border-top">
+    <div class="w3-xxlarge w3-margin">
+        <b class="w3-text-theme">KOS-Q</b>
+    </div>
+    <div class="w3-row w3-margin-bottom">
+        <i onclick="window.open('//twitter.com/mykosq')" class="fa fa-twitter w3-xlarge w3-button w3-padding w3-hover-theme" aria-hidden="true"></i>
+        <i onclick="window.open('//fb.me/mykosq')" class="fa fa-facebook w3-xlarge w3-button w3-padding w3-hover-theme" aria-hidden="true"></i>
+        <i onclick="window.open('//www.instagram.com/mykosq/')" class="fa fa-instagram w3-xlarge w3-button w3-padding w3-hover-theme" aria-hidden="true"></i>
+    </div>
+    <div class="w3-row w3-margin-bottom">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i> care@kosq.info &nbsp;&nbsp;
+        <i class="fa fa-whatsapp" aria-hidden="true"></i> +6281234567890 &nbsp;&nbsp;
+        <i class="fa fa-weixin" aria-hidden="true"></i> kosqkosq
     </div>
 </div>
+</div>
+
 <?php
     }
 ?>
+
 <br/><br/>
 <?php if(isset($_GET['data1']) && isset($_GET['data2']))  { ?>
-    <div class="w3-bar w3-dark-grey w3-large w3-padding-large w3-margin-top">
-        Copyright © 2017 <a href='http://google.com'>KOST-QU</a>
+<div class="w3-bar w3-theme-light w3-center w3-border-theme w3-border-top">
+    <div class="w3-xxlarge w3-margin">
+        <b class="w3-text-theme">KOS-Q</b>
     </div>
+    <div class="w3-row w3-margin-bottom">
+        <i onclick="window.open('//twitter.com/mykosq')" class="fa fa-twitter w3-xlarge w3-button w3-padding w3-hover-theme" aria-hidden="true"></i>
+        <i onclick="window.open('//fb.me/mykosq')" class="fa fa-facebook w3-xlarge w3-button w3-padding w3-hover-theme" aria-hidden="true"></i>
+        <i onclick="window.open('//www.instagram.com/mykosq/')" class="fa fa-instagram w3-xlarge w3-button w3-padding w3-hover-theme" aria-hidden="true"></i>
+    </div>
+    <div class="w3-row w3-margin-bottom">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i> care@kosq.info &nbsp;&nbsp;
+        <i class="fa fa-whatsapp" aria-hidden="true"></i> +6281234567890 &nbsp;&nbsp;
+        <i class="fa fa-weixin" aria-hidden="true"></i> kosqkosq
+    </div>
+</div>
 <?php } ?>
 </body>
 </html>

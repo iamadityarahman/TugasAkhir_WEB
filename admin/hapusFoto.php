@@ -11,6 +11,6 @@
 
 		$sqll = mysql_query("DELETE FROM fotoFoto WHERE x = $idhapus");
 
-		echo "<script>window.open('../admin.php?page=foto&id=" . $_GET['id'] . "', '_SELF')</script>";
+		echo "<script>location.href='index.php?page=foto&id=" . $_GET['id'] . "'</script>";
 	}
 ?>

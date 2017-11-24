@@ -1,7 +1,7 @@
 <?php
 	include "config.php";
-	$home = "w3-yellow";
-	$title = "KOST-QU";
+	$home = "w3-theme";
+	$title = "KOS-Q";
 	include "atas.php";
 ?>
 
@@ -11,7 +11,7 @@
 		<h1 class="w3-jumbo w3-text-white w3-wide w3-black w3-opacity w3-padding"><b>Mau cari kost?</b></h1>
 		<form class="w3-center">
 			<input class="w3-input w3-margin-bottom" id="address" type="text" placeholder="Masukan nama tempat disini...">
-  			<input type="button" id="submit" class="w3-bar-item w3-button w3-green" value="CARI KOST DISEKITAR LOKASI"/>
+  			<input type="button" id="submit" class="w3-bar-item w3-button w3-theme-d3 w3-hover-theme" value="CARI KOST DISEKITAR LOKASI"/>
 		</form>
 	</div>
 </div>
@@ -20,10 +20,10 @@
 <!-- isi dari web -->
 <div class="w3-container">
 	<div class="w3-row">
-		<div class="w3-col m1">
+		<div class="w3-col l1 w3-hide-medium w3-hide-small">
 			&nbsp;
 		</div>
-		<div class="w3-col m10">
+		<div class="w3-col l10 m12 s12 w3-text-theme">
 			<div class="w3-center w3-margin-bottom">
 				<h1 class="w3-margin-top">PILIH KOST YANG KAMU SUKA!</h1>
 				<label>Klik di salah satu kost pada peta</label>
@@ -40,14 +40,13 @@
 						   INNER JOIN fotoKost fk ON dk.id = fk.id";
 				$queryquery = mysql_query($sqlsql);
 				while($k = mysql_fetch_array($queryquery)) { ?>
-
 					<div class="w3-col l3 m6 s6">
-						<div class="limitTampil w3-margin-top">
+						<div class="limitTampil w3-margin-top w3-border">
 							<div class="w3-display-container">
-								<div class="w3-display-bottomleft w3-blue w3-padding-small">
+								<div class="w3-display-bottomleft w3-theme-dark w3-padding-small">
 									<?php echo "".($k['harga']/1000)."K"; ?>
 								</div>
-								<div style="width:100%;height:200px;overflow:hidden" class="w3-white w3-border">
+								<div style="width:100%;height:200px;overflow:hidden" class="w3-white w3-border-bottom">
 									<center><img src="<?=$k['fotoKT']?>" height="200px"/></center>
 								</div>
 							</div>
@@ -61,7 +60,7 @@
 								</div>
 							</div>
 
-							<div class="w3-bar w3-padding">
+							<div class="w3-bar">
 								<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>
 								<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>
 								<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>
@@ -69,11 +68,11 @@
 								<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>
 							</div>
 
-							<div class="w3-row">
-								<button type="button" class="w3-bar w3-button w3-hover-light-green warna-1" onclick="window.location = 'tampil.php?id=<?=$k['id']?>'">
-									<b>SELENGKAPNYA</b>
-								</button>
-							</div>
+							<a onclick="location.href='tampil.php?id=<?=$k['id']?>'">
+								<div class="w3-medium w3-row w3-theme-d3 w3-hover-theme w3-margin w3-padding-small">
+									SELENGKAPNYA
+								</div>
+							</a>
 						</div>
 					</div>				
 			<?
@@ -82,13 +81,10 @@
 			</div>
 
 			<div class="w3-row-padding w3-center w3-margin-top">
-				<div id="tampilkanLain" class="w3-margin-top w3-button w3-blue">
-					TAMPILKAN LAINNYA
+				<div id="tampilkanLain" class="w3-button w3-hover-theme w3-theme-d5">
+					<b>TAMPILKAN LAINNYA</b>
 				</div>
 			</div>
-		</div>
-		<div class="w3-col m1">
-			&nbsp;
 		</div>
 	</div>
 </div>
@@ -121,7 +117,7 @@
 			$hasil = mysql_query($sql);
 			while($x = mysql_fetch_object($hasil)){
 				?>
-				['<?=$x->nama;?>', parseFloat(<?=$x->lat;?>), parseFloat(<?=$x->long;?>)],
+				['<?=$x->id;?>', parseFloat(<?=$x->lat;?>), parseFloat(<?=$x->long;?>), '<?=$x->nama?>'],
 			<?
 			}
 			?>
@@ -155,17 +151,17 @@
 	function setMarkers(map,locations) {
 		var marker, i
 		for (i = 0; i < locations.length; i++) {  
-			var loan = locations[i][0];
+			var id = locations[i][0];
 			var lat = locations[i][1];
 			var long = locations[i][2];
-			var add =  locations[i][1];
-			var content = "Loan Number: " + loan +  '</h3>' + "Address: " + add;
+			var nama =  locations[i][3];
+			var content = "<h3><a href='tampil.php?id=" + id +"'>" + nama +  "</a></h3>";
 			var infowindow = new google.maps.InfoWindow();
 			
 			latlngset = new google.maps.LatLng(lat, long);
 			var marker = new google.maps.Marker({  
 				map: map,
-				title: loan,
+				title: nama,
 				position: latlngset,
 				icon: 'img/tanda.png'
 			});

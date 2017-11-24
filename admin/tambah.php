@@ -210,8 +210,7 @@
             </div>        
         </form>
         <?php
-            include "./config.php";
-            include "./admin/save.php";
+            include "save.php";
         ?>
     </div>
 </div>
@@ -239,7 +238,7 @@
             position: posisi,
             title: 'dragMe',
             draggable: true,
-            icon: 'img/tanda2.png'
+            icon: '../img/tanda2.png'
         });
 
         var isiNya = "<h1>Drag Me!</h1>";

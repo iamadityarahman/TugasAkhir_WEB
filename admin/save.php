@@ -21,7 +21,7 @@
         if ($formatProfile == "") {
             $simpanProfile = "img/default_profile.png";
         } else {
-            move_uploaded_file($_FILES["fotoProfile"]["tmp_name"], $simpanProfile);
+            move_uploaded_file($_FILES["fotoProfile"]["tmp_name"], "../".$simpanProfile);
         }
 
         // upload foto header
@@ -32,7 +32,7 @@
         if ($formatHeader == "") {
             $simpanHeader = "img/default_header.jpg";
         } else {
-            move_uploaded_file($_FILES["fotoHeader"]["tmp_name"], $simpanHeader);
+            move_uploaded_file($_FILES["fotoHeader"]["tmp_name"], "../".$simpanHeader);
         }
 
         mysql_query("INSERT INTO fotoKost VALUES ('$id','$simpanProfile','$simpanHeader')");
