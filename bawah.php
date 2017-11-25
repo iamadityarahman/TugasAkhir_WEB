@@ -1,6 +1,6 @@
 <div class="w3-bar w3-theme-light w3-center w3-border-top w3-border-theme">
 	<div class="w3-xxlarge w3-margin">
-		<b class="w3-text-theme">KOS-Q</b>
+		<img onclick="location.href='index.php'" src="img/2.png" width="120px" class="w3-image" style="cursor: pointer;">
 	</div>
 	<div class="w3-row w3-margin-bottom">
 		<i onclick="window.open('//twitter.com/mykosq')" class="fa fa-twitter w3-xlarge w3-button w3-padding w3-hover-theme" aria-hidden="true"></i>

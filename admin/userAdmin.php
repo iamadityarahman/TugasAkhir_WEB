@@ -56,7 +56,7 @@
 
 <div class="w3-container">
 	<ul class="w3-ul">
-		<table class="w3-table w3-striped w3-bordered">
+		<table class="w3-table w3-striped w3-bordered w3-hoverable">
 		    <tr>
 		      <th>Username</th>
 		      <th class="w3-right">Menu</th>
@@ -70,10 +70,10 @@
 					<b><?=$tyu['username']?></b>
 				</td>
 				<td>
-					<span onclick="location.href='hapusUser.php?id=<?=$tyu['idAdmin']?>'" class="w3-margin-right w3-bar-item w3-button w3-red w3-large w3-right">
+					<span onclick="location.href='hapusUser.php?id=<?=$tyu['idAdmin']?>'" class="w3-hover-light-grey w3-margin-right w3-bar-item w3-button w3-red w3-large w3-right">
 	                	<i class="fa fa-ban" aria-hidden="true"></i>
 	            	</span>
-	            	<span onclick="document.getElementById('ubahPassword<?=$tyu['username']?>').style.display='block'" class="w3-margin-right w3-bar-item w3-button w3-blue w3-large w3-right">
+	            	<span onclick="document.getElementById('ubahPassword<?=$tyu['username']?>').style.display='block'" class="w3-hover-light-grey w3-margin-right w3-bar-item w3-button w3-blue w3-large w3-right">
 	                	<i class="fa fa-key" aria-hidden="true"></i>
 	            	</span>
 	            	<div class="w3-modal" id="ubahPassword<?=$tyu['username']?>">
@@ -98,7 +98,7 @@
 											<input onclick="document.getElementById('ubahPassword<?=$tyu['username']?>').style.display='none'" class="w3-input w3-button w3-red" value="BATAL" />
 										</div>
 										<div class="w3-col s6">
-											<input class="w3-input w3-button w3-green" type="submit" name="gantiPassword" />
+											<input class="w3-input w3-button w3-green" type="submit" name="gantiPassword" value="UBAH PASSWORD" />
 										</div>
 									</div>
 								</form>	

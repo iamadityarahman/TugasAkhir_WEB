@@ -9,14 +9,17 @@
 		}
 		$moh = mysql_query("SELECT * FROM reviewKost rk INNER JOIN userBiasa ub ON rk.idUser = ub.id WHERE rk.idKost = $_GET[id]");
 		while ($kol = mysql_fetch_array($moh)) {
+			$hash = md5(strtolower(trim($kol['email'])));
+			$size = 200;
+			$gravatar = "http://www.gravatar.com/avatar/" . $hash . "?s=" . $size;
 	?>
 	<div class="w3-row">
 		<div class="w3-row">
-			<div class="w3-col l1 w3-padding-small">
-				<img src="img/a.png" class="w3-image w3-hide-small w3-hide-medium">
+			<div class="w3-col l1 w3-padding-small"	style="margin-top: 6px">
+				<img src="<?=$gravatar?>" class="w3-image w3-hide-small w3-hide-medium">
 			</div>
 			<div class="w3-col l11 w3-padding-small">
-				<div class="w3-medium w3-large"><b><?=$kol['userBiasa']?></b>
+				<div class="w3-medium w3-large"><b><?=$kol['depan']?> <?=$kol['belakang']?></b>
 					<?php
 						if(isset($_SESSION['userBiasa']) && isset($_SESSION['pass'])) {
 							if($kol['userBiasa'] == $_SESSION['userBiasa']) { 

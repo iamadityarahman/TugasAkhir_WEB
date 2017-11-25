@@ -4,7 +4,6 @@
     $sqlTampil = "SELECT * FROM dataKost dk INNER JOIN kapasitasKost kk ON dk.id = kk.id_kost 
                                             INNER JOIN fotoKost fk ON dk.id = fk.id 
                                             INNER JOIN kontakKost ko ON dk.id = ko.id 
-                                            INNER JOIN ratingKost rk ON dk.id = rk.id
                                             INNER JOIN spesifikasiKost sk ON dk.id = sk.id
                                             WHERE dk.id='$_GET[id]'";
     $data = mysql_query($sqlTampil);
@@ -13,24 +12,43 @@
     $title = strtoupper($z['nama']);
     include "atas.php";
 ?>
-<div style="margin-top: 49px"></div>
+<div class="w3-bar w3-xlarge w3-margin-bottom" style="letter-spacing:4px;">
+    &nbsp;
+</div>
+
 <div class="w3-hide-small">
     <div id="header360" style="height:400px;width:100%"></div>
 </div>
-<div class="w3-bar w3-xlarge w3-padding w3-border">
+<div class="w3-bar w3-xxlarge w3-padding w3-border">
     <b><?=strtoupper($z['nama'])?></b>
-    <div class="w3-large w3-text-theme w3-right">
-        Tersedia <?=$z['kapasitas']?> Kamar
-    </div>
 </div>
 
 <?php
     $moh = mysql_query("SELECT COUNT(*) AS jumlahReview FROM reviewKost WHERE idKost = $_GET[id]");
     $jkl = mysql_fetch_array($moh);
 ?>
+
 <div class="w3-row">
     <div class="w3-col l8 m12 s12">
         <div class="w3-container">
+
+            <div class="w3-hide-large w3-margin-bottom w3-margin-top">
+                <div class="w3-bar w3-theme w3-margin-bottom w3-padding">
+                    <div class="w3-large w3-center">Tersedia <?=$z['kapasitas']?> Kamar</div>
+                </div>
+                <div class="w3-padding-small w3-medium w3-border">
+                    <div class="w3-center"><b>
+                        <div class="w3-padding">
+                            Rp. <?=number_format($z['harga'],0,",",".")?>,-/bulan
+                        </div>
+                        <div class="w3-padding">
+                            Rp. <?=number_format((($z['harga']*12)-((2/100)*($z['harga']*12))),0,",",".")?>,-/tahun
+                        </div>
+                    </b></div>
+                </div>
+            </div>  
+
+
             <div class="w3-panel w3-medium w3-border-bottom w3-border-theme">
                 <button class="w3-bar-item w3-button tablink w3-theme" onclick="openCity(event,'awal')">Detail kost</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'fasilitas')">Review (<?=$jkl['jumlahReview']?>)</button>
@@ -44,13 +62,38 @@
             </div>
         </div>
     </div>
+
+    <!-- konten sebelah kanan -->
     <div class="w3-col l4 m12 s12">
         <div class="w3-container w3-margin-top w3-margin-bottom">
-            <div class="w3-bar w3-theme-dark w3-col w3-margin-bottom w3-padding">
-                <h4>Rp. <?=number_format($z['harga'],0,",",".")?>,-/bulan</h4>
-            </div>            
-            <div class="w3-display-container w3-margin-bottom">
-                <div style="width:100%;height:300px;overflow:hidden;">
+            <div class="w3-hide-small w3-hide-medium w3-margin-bottom">
+                <div class="w3-bar w3-theme w3-margin-bottom w3-padding">
+                    <div class="w3-xlarge w3-center">Tersedia <?=$z['kapasitas']?> Kamar</div>
+                </div>
+                <div class="w3-padding-small w3-large w3-border">
+                    <div class="w3-center"><b>
+                        <div class="w3-padding">
+                            Rp. <?=number_format($z['harga'],0,",",".")?>,-/bulan
+                        </div>
+                        <div class="w3-padding">
+                            Rp. <?=number_format((($z['harga']*12)-((2/100)*($z['harga']*12))),0,",",".")?>,-/tahun
+                        </div>
+                    </b></div>
+                </div>
+            </div> 
+  
+            <div class="w3-display-container w3-light-grey
+                <?php
+                    $ytr = mysql_query("SELECT COUNT(*) AS jumlah FROM fotoFoto WHERE id = $_GET[id]");
+                    $hyc = mysql_fetch_array($ytr);
+                    if($hyc['jumlah'] == 0) {
+                        echo "w3-col l12 m12 s12";
+                    } else {
+                        echo "w3-col l12 m8 s8";
+                    }
+                ?>
+            ">
+                <div style="width:100%;height:300px;overflow:hidden;" class="w3-border">
                     <center>
                         <img src="<?=$z['fotoKT']?>" class="w3-margin-bottom" height="300px"/>
                     </center>
@@ -64,15 +107,14 @@
                     </button>
                 </div>
             </div>
+            <div class="w3-padding w3-hide-small w3-hide-medium">&nbsp;</div>
 
-
-            <!-- konten sebelah kanan -->
             <?php
                 $sqlpp = mysql_query("SELECT * FROM fotoFoto WHERE id = $_GET[id]");
                 $xyz = 0;
                 while ($iii = mysql_fetch_array($sqlpp)) { $xyz++; $fgh = "id" . $xyz;
                     if($iii['jenis'] == "360") { ?>
-                        <div onclick="document.getElementById('<?=$fgh?>').style.display='block'" class="w3-hover-opacity w3-half w3-display-container w3-border">
+                        <div onclick="document.getElementById('<?=$fgh?>').style.display='block'" class="w3-col l6 m4 s4 w3-hover-opacity w3-display-container">
                             <div style="width:100%;height:150px;overflow:hidden;">
                                 <div id="panorama<?=$xyz?>" style="width: 100%; height: 150px;"></div>
                                 <script type="text/javascript">
@@ -101,7 +143,7 @@
                         </div>
             <?
                     } else { ?>
-                        <div onclick="document.getElementById('<?=$fgh?>').style.display='block'" class="w3-half w3-border">
+                        <div onclick="document.getElementById('<?=$fgh?>').style.display='block'" class="w3-col l6 m4 s4">
                             <div style="width:100%;height:150px;overflow:hidden;">
                                 <img style="width: 100%; height: 150px;" class="w3-hover-opacity" src="<?=$iii['namaFoto']?>"/>
                             </div>
@@ -125,11 +167,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 
 <?php
     if(!isset($_GET['page']) || $_GET['page'] == null) {

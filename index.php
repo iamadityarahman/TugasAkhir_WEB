@@ -40,7 +40,7 @@
 						   INNER JOIN fotoKost fk ON dk.id = fk.id";
 				$queryquery = mysql_query($sqlsql);
 				while($k = mysql_fetch_array($queryquery)) { ?>
-					<div class="w3-col l3 m6 s6">
+					<div class="w3-col l3 m4 s6">
 						<div class="limitTampil w3-margin-top w3-border">
 							<div class="w3-display-container">
 								<div class="w3-display-bottomleft w3-theme-dark w3-padding-small">
@@ -60,19 +60,30 @@
 								</div>
 							</div>
 
-							<div class="w3-bar">
-								<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>
-								<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>
-								<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>
-								<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>
-								<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>
+							<?php
+							    $ksq = mysql_query("SELECT AVG(kenyamanan) AS kenyamanan, AVG(keamanan) AS keamanan, AVG(kebersihan) AS kebersihan, COUNT(*) AS jumlahReview FROM reviewKost WHERE idKost = $k[id]");
+							    $ytg = mysql_fetch_array($ksq);
+
+							    $kenyamanan = $ytg['kenyamanan'];
+							    $keamanan = $ytg['keamanan'];
+							    $kebersihan = $ytg['kebersihan'];
+							    $rata2 = round(($kenyamanan + $keamanan + $kebersihan) / 3);
+							?>
+
+							<div class="w3-bar w3-text-black w3-padding-small">
+				                <?php
+				                    for($a=0; $a<$rata2; $a++) {
+				                        echo "<span class='w3-large fa fa-star checked'></span>";
+				                    }
+				                    for($a=0; $a<abs($rata2-5); $a++) {
+				                        echo "<span class='w3-large fa fa-star'></span>";
+				                    }
+				                ?> (<?=$ytg['jumlahReview']?>)
 							</div>
 
-							<a onclick="location.href='tampil.php?id=<?=$k['id']?>'">
-								<div class="w3-medium w3-row w3-theme-d3 w3-hover-theme w3-margin w3-padding-small">
-									SELENGKAPNYA
-								</div>
-							</a>
+							<div onclick="location.href='tampil.php?id=<?=$k['id']?>'" class="w3-padding w3-margin w3-row w3-theme-d3 w3-hover-theme" style="cursor: pointer">
+								Selengkapnya
+							</div>
 						</div>
 					</div>				
 			<?
@@ -98,6 +109,16 @@
 		Load more content with jQuery - May 21, 2013
 		(c) 2013 @ElmahdiMahmoud
 	*/   
+
+
+	$(window).scroll(function(){
+		$(".limitTampil").slice(0, 4).show();
+		if ($(window).scrollTop() == $(document).height() - $(window).height()){
+			e.preventDefault();
+			$(".limitTampil:hidden").slice(0, 4).slideDown();
+		}
+	 }); 
+
 
 	$(function () {
 		$(".limitTampil").slice(0, 4).show();

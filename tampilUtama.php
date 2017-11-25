@@ -1,3 +1,8 @@
+<?php
+    $ksq = mysql_query("SELECT AVG(kenyamanan) AS kenyamanan, AVG(keamanan) AS keamanan, AVG(kebersihan) AS kebersihan FROM reviewKost WHERE idKost = $_GET[id]");
+    $ytg = mysql_fetch_array($ksq);
+?>
+
 <div class="w3-bar w3-large w3-margin-top"><b>Peta lokasi kost:</b></div>
 <div>
     <input id="latlng" type="text" value="<?=$z['lat']?>,<?=$z['long']?>" hidden>
@@ -11,36 +16,36 @@
             <div class="w3-col l4 m4 s6">
                 Kenyamanan<br/>
                 <?php
-                    $nyaman = $z['kenyamanan'];
+                    $nyaman = $ytg['kenyamanan'];
                     for($a=0; $a<$nyaman; $a++) {
-                        echo "<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>";
+                        echo "<span class='w3-large fa fa-star checked'></span>";
                     }
                     for($a=0; $a<abs($nyaman-5); $a++) {
-                        echo "<i class='fa fa-star-o' aria-hidden='true' style='color:gray;'></i>";
+                        echo "<span class='w3-large fa fa-star'></span>";
                     }
                 ?>
             </div>
             <div class="w3-col l4 m4 s6">
                 Keamanan<br/>
                 <?php
-                    $aman = $z['keamanan'];
+                    $aman = $ytg['keamanan'];
                     for($a=0; $a<$aman; $a++) {
-                        echo "<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>";
+                        echo "<span class='w3-large fa fa-star checked'></span>";
                     }
                     for($a=0; $a<abs($aman-5); $a++) {
-                        echo "<i class='fa fa-star-o' aria-hidden='true' style='color:gray;'></i>";
+                        echo "<span class='w3-large fa fa-star'></span>";
                     }
                 ?>
             </div>
             <div class="w3-col l4 m4 s12">
                 Kebersihan<br/>
                 <?php
-                    $bersih = $z['kebersihan'];
+                    $bersih = $ytg['kebersihan'];
                     for($a=0; $a<$bersih; $a++) {
-                        echo "<i class='fa fa-star' aria-hidden='true' style='color:orange;'></i>";
+                        echo "<span class='w3-large fa fa-star checked'></span>";
                     }
                     for($a=0; $a<abs($bersih-5); $a++) {
-                        echo "<i class='fa fa-star-o' aria-hidden='true' style='color:gray;'></i>";
+                        echo "<span class='w3-large fa fa-star'></span>";
                     }
                 ?>
             </div>
