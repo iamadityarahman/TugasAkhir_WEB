@@ -7,7 +7,7 @@
     $sqlsqlmu = mysql_query($sqlsqlku);
     $fuk = mysql_fetch_array($sqlsqlmu);
 ?>
-<header class="w3-container" style="padding-top:22px">
+<header class="w3-container">
     <h2><b><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;MANAJEMEN INFO KOST&nbsp;/&nbsp;<?=strtoupper($fuk['nama'])?></b></h2>
 </header>
 

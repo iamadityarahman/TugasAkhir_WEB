@@ -3,6 +3,7 @@
 	$home = "w3-theme";
 	$title = "KOS-Q";
 	include "atas.php";
+	mysql_query("UPDATE statistikWeb SET visitor = visitor + 1 WHERE id = 0");
 ?>
 
 <div class="w3-display-container">
@@ -15,7 +16,6 @@
 		</form>
 	</div>
 </div>
-
 
 <!-- isi dari web -->
 <div class="w3-container">
@@ -146,9 +146,31 @@
 
 	function initMap() {
 		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 16,
+			zoom: 15,
 			center: {lat: -7.962681, lng: 112.618052}
 		});
+
+		var infoWindow = new google.maps.InfoWindow;
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          	navigator.geolocation.getCurrentPosition(function(position) {
+	            var pos = {
+		              lat: position.coords.latitude,
+		              lng: position.coords.longitude
+	            };
+
+            	map.setCenter(pos);
+           		map.setZoom(15);
+
+          }, function() {
+            	handleLocationError(true, infoWindow, map.getCenter());
+          });
+
+        } else {
+          	// Browser doesn't support Geolocation
+          	handleLocationError(false, infoWindow, map.getCenter());
+        }
 
 		// menset maker pada peta
 		setMarkers(map, locations);
@@ -156,11 +178,11 @@
         // membuat autocompele di kotak pencarian
         var input = document.getElementById('address');
         var searchBox = new google.maps.places.SearchBox(input);
+
 		// fungsi mengembalikan nilai yang mungkin ke kotak pencarian
 		map.addListener('bounds_changed', function() {
           	searchBox.setBounds(map.getBounds());
         });
-
 
 		// membuat geo coder
 		var geocoder = new google.maps.Geocoder();
@@ -168,6 +190,14 @@
 			geocodeAddress(geocoder, map);
 		});
 	}
+
+	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+						'Error: The Geolocation service failed.' :
+						'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+    }
 
 	function setMarkers(map,locations) {
 		var marker, i
@@ -220,7 +250,7 @@ async defer></script>
 
 <script type="text/javascript">
     // 360 viewer
-    viewer = pannellum.viewer('header', ﻿{
+    viewer = pannellum.viewer('header',{
         "panorama": "img/home/home<?=$nomorHeader[0]?>.jpg",
         "autoLoad": true,
         "showControls": false,

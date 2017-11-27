@@ -62,7 +62,7 @@
         while($b = mysql_fetch_array($sqlsql)) {
             echo "
                 <div class='w3-col l4 m4 s4'>
-                    <img src='img/fasilitas/kamar_". $b['kamarIcon'] .".png' style='height:40px'>
+                    <img src='img/fasilitas/kamar_". $b['kamarIcon'] .".png' style='height:50px'>
                     <div class='w3-container w3-margin-top w3-margin-bottom'>
                         ". convertKamar($b['kamarIcon']) ."
                     </div>
@@ -80,7 +80,7 @@
         while($b = mysql_fetch_array($sqlsql)) {
             echo "
                 <div class='w3-col l4 m4 s4'>
-                    <img src='img/fasilitas/mandi_". $b['mandiIcon'] .".png' style='height:40px'>
+                    <img src='img/fasilitas/mandi_". $b['mandiIcon'] .".png' style='height:50px'>
                     <div class='w3-margin-top w3-margin-bottom'>
                         ". convertMandi($b['mandiIcon']) ."
                     </div>

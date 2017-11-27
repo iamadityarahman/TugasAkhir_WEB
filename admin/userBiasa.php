@@ -1,6 +1,6 @@
 <!-- Header -->
-<header class="w3-container" style="padding-top:22px">
-    <b><h2><i class="fa fa-users"></i>&nbsp;&nbsp;MANAJEMEN USER BIASA</h2></b>
+<header class="w3-container">
+    <b><h2><i class="fa fa-users"></i><b>&nbsp;&nbsp;MANAJEMEN USER BIASA</b></h2></b>
 </header>
 
 <?php

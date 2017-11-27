@@ -1,5 +1,9 @@
 <?php
     session_start();
+
+    if(!isset($_SESSION['usradmin']) && !isset($_SESSION['pswadmin'])) {
+        echo "<script>location.href='login.php'</script>";
+    }
     
     include "../config.php";
     include "updateData.php";
@@ -36,25 +40,31 @@
             #map {
                 height: 400px;
             }
+            html, body {
+                height: 100%;
+            }
         </style>
     </head>
 <body class="w3-white">
+<div class="w3-hide-small">
     <!-- Top container -->
     <div class="w3-bar w3-top w3-teal w3-xlarge" style="z-index:4">
         <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
         <span class="w3-bar-item w3-left">KOST-QU MYADMIN</span>
-        <a href="./admin/logout.php" class="w3-bar-item w3-right w3-margin-right w3-hover-black">
+        <a href="logout.php" class="w3-bar-item w3-right w3-hover-black">
             <i class="fa fa-sign-out" aria-hidden="true"></i>
         </a>
     </div>
+    <div class="w3-bar w3-teal w3-xlarge" style="z-index:4">
+        <span class="w3-bar-item w3-left">KOST-QU MYADMIN</span>
+    </div>
 
     <!-- Sidebar/menu -->
-    <nav class="w3-sidebar w3-collapse w3-teal" style="z-index:3;width:300px;margin-top:20px;" id="mySidebar"><br>
+    <nav class="w3-sidebar w3-collapse w3-teal" style="z-index:3;width:300px;" id="mySidebar"><br>
         <div class="w3-container w3-center">
             <img src="../img/admin.ico" class="w3-image w3-circle w3-white" style="width: 100px" />
             <div class="w3-row-padding w3-margin-top w3-margin-bottom">
-                    <button onclick="window.open('../index.php', '_SELF')" class="w3-button w3-yellow w3-black">SITE</button>
-                    <button class="w3-button w3-yellow w3-black">PROFILE</button>
+                    <button onclick="window.open('../index.php', '_SELF')" class="w3-button w3-yellow w3-black">KOS-Q.INFO</button>
             </div>
         </div>
         <div class="w3-bar-block">
@@ -67,13 +77,16 @@
         </div>
     </nav>
 
+
     <!-- Overlay effect when opening sidebar on small screens -->
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
     <!-- sidebar menu selesi -->
 
     <!-- isi inya -->
-    <div class="w3-main" style="margin-left:300px;margin-top:30px;">
+    <div class="w3-main" style="margin-left:300px;">
         <?php
+            //echo $_SESSION['wktadmin'];
+
             if (!isset($_GET['page'])) {
                 include "home.php";
             } elseif($_GET['page'] == "tambah") {
@@ -119,6 +132,17 @@
             overlayBg.style.display = "none";
         }
     </script>
+</div>
+
+<div class="w3-hide-large w3-hide-medium w3-display-container" style="height: 100%">
+    <div class="w3-display-middle w3-center">
+        <div class="w3-xxlarge w3-center w3-margin">
+            MOHON MAAF, HALAMAN ADMIN TIDAK SUPPORT UNTUK PONSEL/SMARTPHONE!!!
+        </div>
+        <button onclick="location.href='../index.php'" class="w3-button w3-xlarge w3-padding w3-green w3-hover-light-grey">HOME</button>
+    </div>
+</div>
+
 </body>
 </html>
 

@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include "config.php";
 ?>
 <!doctype html>
 <html>
@@ -40,7 +41,7 @@
 
 			/* style auto komlit */
 			.kostkost {
-				width: auto;
+				width: 300px;
 			}
 			.tt-menu {
 				background-color: #FFFFFF;
@@ -77,11 +78,11 @@
 
 
 		</style>
-  </head>
-  <body>
+  	</head>
+  	<body>
 <!-- membuat bar -->
 <div class="w3-top">
-	<div class="w3-bar w3-xlarge w3-theme-d4" style="letter-spacing:4px;">
+	<div class="w3-bar w3-xlarge w3-theme-d4">
 		<button href="javascript:void(0)" onclick="myFunction()" class="w3-hide-large w3-hide-medium w3-bar-item w3-button w3-hover-theme">
 			<b><i class="fa fa-bars" aria-hidden="true"></i></b>
 		</button>
@@ -98,18 +99,36 @@
 		</button>
 
 		<!-- tombol login -->
-		<?php if(isset($_SESSION['userBiasa']) && isset($_SESSION['pass'])) { ?>
+		<?php if(isset($_SESSION['userBiasa']) && isset($_SESSION['pass'])) { 
+					$yhb = mysql_query("SELECT * FROM userBiasa WHERE userBiasa = '$_SESSION[userBiasa]'");
+					$nmf = mysql_fetch_array($yhb); 
+
+					$hash = md5(strtolower(trim($nmf['email'])));
+					$size = 200;
+					$gravatar = "http://www.gravatar.com/avatar/" . $hash . "?s=" . $size;
+		?>
 
 			<!-- tulisan login waktu besar sama sedang -->
-			<div class="w3-dropdown-hover w3-hover-theme w3-right w3-hide-small">
-				<button class="w3-button">
-					<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+			<div class="w3-dropdown-click w3-hover-theme w3-right w3-hide-small">
+				<button onclick="fungsiDropdown()" class="w3-button">
+					<i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;<?=$nmf['userBiasa']?>
 				</button>
 
-				<div class="w3-dropdown-content w3-bar-block w3-medium" style="right:0">
+				<div id="dropdown" class="w3-dropdown-content w3-border w3-bar-block w3-medium" style="right:0">
 					<div class="w3-row w3-padding">
-						<button class="w3-button w3-green">PROFILE</button>
-						<button onclick="location.href='logout.php'" class="w3-button w3-red">LOGOUT</button>
+						<div class="w3-row w3-center">
+							<img src="<?=$gravatar?>" class="w3-margin-bottom w3-circle w3-image w3-center" width="100px">
+							<div class="w3-medium w3-margin-bottom">
+								<?=$nmf['depan']?>
+								<?=$nmf['belakang']?>
+							</div>
+						</div>
+						<button onclick="location.href='profile.php'" class="w3-button w3-green">
+							<i class="fa fa-user" aria-hidden="true"></i> Profile
+						</button>
+						<button onclick="location.href='logout.php'" class="w3-button w3-red">
+							<i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+						</button>
 					</div>
 		      	</div>
 		    </div>
@@ -121,8 +140,8 @@
 
 			<?php } else { ?>
 
-			<button onclick="document.getElementById('formulir').style.display='block'" class="w3-hover-theme w3-bar-item w3-right w3-margin-right w3-button w3-hide-small">
-				<i class="fa fa-sign-in" aria-hidden="true"></i>
+			<button onclick="document.getElementById('formulir').style.display='block'" class="w3-hover-theme w3-bar-item w3-right w3-button w3-hide-small">
+				<i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;Login
 			</button>
 
 		<?php } ?>
@@ -191,6 +210,15 @@
 	    } else { 
 	        x.className = x.className.replace(" w3-show", "");
 	    }
+	}	
+
+	function fungsiDropdown() {
+	    var x = document.getElementById("dropdown");
+	    if (x.className.indexOf("w3-show") == -1) {
+	        x.className += " w3-show";
+	    } else { 
+	        x.className = x.className.replace(" w3-show", "");
+	    }
 	}
 
 
@@ -209,6 +237,7 @@
 				}
       		});
 		});
+
 		$("#formLogin input").keydown(function(e) {
 			if (e.keyCode == 13) {
 				$.ajax({

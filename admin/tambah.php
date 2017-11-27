@@ -1,9 +1,10 @@
 <!-- Header -->
-<header class="w3-container" style="padding-top:22px">
+<header class="w3-container">
     <h2><b><i class="fa fa-plus"></i>&nbsp;&nbsp;TAMBAH KOST-KOSTAN</b></h2>
 </header>
 
 <div class="w3-row-padding w3-margin-bottom">
+
     <div class="w3-container w3-margin-bottom">
         <h4>Pilih lokasi kost:</h4>
         <div id="map" class="w3-border"></div>
@@ -213,7 +214,7 @@
             include "save.php";
         ?>
     </div>
-</div>
+</div><br/>
 
 <script>
     // membuka formulir tambahan
@@ -228,6 +229,7 @@
 
     function initMap() {
         var dragMe = new google.maps.InfoWindow;
+
         var posisi = new google.maps.LatLng(-7.962465, 112.618066);
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 16,
@@ -242,7 +244,6 @@
         });
 
         var isiNya = "<h1>Drag Me!</h1>";
-
         marker.setMap(map);
         dragMe.setPosition(posisi);
         dragMe.setContent(isiNya);
@@ -252,16 +253,13 @@
             dragMe.close(map, marker);
         });
 
-
-
+        
         // ketika markernya didrag, koordinatnya langsung di selipin di textfield
         google.maps.event.addListener(marker, 'dragend', function(event){
             document.getElementById('latitude').value = this.getPosition().lat();
             document.getElementById('longitude').value = this.getPosition().lng();
         });
     }
-
-
 </script>
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPXMBmMqLeLI4U1jgF2V9T7bz3duMSx9M&callback=initMap">

@@ -39,7 +39,7 @@
 			<div class="w3-col l12">
 				<div class="w3-row w3-right w3-margin-right">
 					<div class="w3-medium">
-						<i>12 November 2017</i>
+						<i><?=$kol['tanggal']?></i>
 					</div>
 				</div>
 				<div class="w3-row w3-right w3-margin-right">

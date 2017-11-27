@@ -542,7 +542,7 @@
 ?>
 <div class="w3-container w3-center" style="padding-top:75px">
     <div class="w3-card w3-bar w3-padding-large w3-margin-top">
-        <b class="w3-xxlarge">MASUKAN NAMA KOST UNTUK DIBANDINGKAN!!!</b>
+        <b class="w3-xlarge">MASUKAN NAMA KOST UNTUK DIBANDINGKAN!!!</b>
     </div>
 </div>
 

@@ -1,5 +1,5 @@
 <!-- Header -->
-<header class="w3-container" style="padding-top:22px">
+<header class="w3-container">
     <h2><b><i class="fa fa-wrench"></i>&nbsp;&nbsp;MANAJEMEN KOST</b></h2>
 </header>
 <?php

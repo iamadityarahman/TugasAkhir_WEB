@@ -1,4 +1,7 @@
 <!doctype html>
+<?php
+	include "config.php";
+?>
 <html>
 	<head>
 		<title>DAFTAR AKUN</title>
@@ -55,37 +58,45 @@
 			<div class="w3-col l6 m12 s12 w3-padding w3-margin-bottom">
 				<form method="POST">
 				<div class="w3-light-grey w3-padding w3-border w3-margin-top">
-					<div class="w3-row-padding w3-margin-top w3-hide-small">
+
+					<div class="w3-row-padding w3-margin-top">
 						 <div class="w3-half">
-						 	<input class="w3-input w3-border" type="text" name="depan" placeholder="Nama depan">
+						 	<input class="w3-input w3-border" type="text" name="depan" placeholder="Nama depan" id="depan" required/>
 						 </div>
 						 <div class="w3-half">
-						 	<input class="w3-input w3-border" type="text" name="belakang" placeholder="Nama belakang">
+						 	<input class="w3-input w3-border" type="text" name="belakang" placeholder="Nama belakang" id="belakang" required/>
 						 </div>
-					</div>					
+					</div>
+
 					<div class="w3-row-padding">
 						<div class="w3-row-padding">
-							<div class="w3-row w3-section w3-hide-large w3-hide-medium">
-								<input class="w3-input w3-border" type="text" name="depan" placeholder="Nama depan">
-							</div>
-							<div class="w3-row w3-section w3-hide-large w3-hide-medium">
-								<input class="w3-input w3-border" type="text" name="belakang" placeholder="Nama belakang">
-							</div>
 							<div class="w3-row w3-section">
-								<input class="w3-input w3-border" name="username" type="text" placeholder="Username">
+								<input class="w3-input w3-border" name="username" type="text" placeholder="Username" id="username" required/>
 							</div>					
 							<div class="w3-row w3-section">
-								<input class="w3-input w3-border" name="email" type="email" placeholder="Email">
-							</div>							
+								<input class="w3-input w3-border" name="email" type="email" placeholder="Email" id="email" required/>
+							</div>
 							<div class="w3-row w3-section">
-								<input class="w3-input w3-border" name="password1" type="password" placeholder="Password">
+								<select class="w3-input" name="namaKost">
+									<?php
+										$klo = "SELECT * FROM dataKost ORDER BY nama ASC";
+										$hgi = mysql_query($klo);
+										while ($data = mysql_fetch_array($hgi)) { ?>
+											<option value="<?=$data['nama']?>"><?=$data['nama']?></option>
+									<?php
+										}
+									?>
+								</select>
+							</div>	
+							<div class="w3-row w3-section">
+								<input class="w3-input w3-border" name="password1" type="password" placeholder="Password" id="password1" required/>
 							</div>						
 							<div class="w3-row w3-section">
-								<input class="w3-input w3-border" name="password2" type="password" placeholder="Konfirmasi password">
+								<input class="w3-input w3-border" name="password2" type="password" placeholder="Konfirmasi password" required/>
 							</div>					
 							<div class="w3-row w3-section">
-								<input class="w3-input w3-border w3-flat-belize-hole w3-hover-dark-grey" name="kirim" type="submit" value="Next">
-							</div>
+								<input class="w3-input w3-border w3-flat-belize-hole w3-hover-dark-grey" name="kirim" type="submit" value="Daftar">
+							</div>							
 						</div>
 					</div>		
 				</div>
@@ -93,7 +104,15 @@
 			</div>
 			<?php
 				include "daftarAkunNext.php";
+				if(isset($_POST['kirim'])) {
 			?>
+				<script>
+					document.getElementById("depan").value = "<?=$_POST['depan']?>";
+					document.getElementById("belakang").value = "<?=$_POST['belakang']?>";
+					var username = document.getElementById("username").value = "<?=$_POST['username']?>";
+					document.getElementById("email").value = "<?=$_POST['email']?>";
+				</script>
+			<?php } ?>
 		</div>
 
 		<!-- bar bawah waktu gede -->

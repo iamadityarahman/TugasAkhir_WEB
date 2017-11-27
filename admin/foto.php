@@ -9,7 +9,7 @@
 	include "hapusFoto.php";
 ?>
 <!-- Header -->
-<header class="w3-container" style="padding-top:22px">
+<header class="w3-container">
     <h2><b><i class="fa fa-image"></i> MANAJEMEN FOTO KOST&nbsp;/&nbsp;<?=$um['nama']?></b></h2>
 </header>
 <div class="w3-container w3-margin-bottom">

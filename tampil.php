@@ -47,8 +47,7 @@
                     </b></div>
                 </div>
             </div>  
-
-
+            
             <div class="w3-panel w3-medium w3-border-bottom w3-border-theme">
                 <button class="w3-bar-item w3-button tablink w3-theme" onclick="openCity(event,'awal')">Detail kost</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'fasilitas')">Review (<?=$jkl['jumlahReview']?>)</button>
@@ -93,7 +92,7 @@
                     }
                 ?>
             ">
-                <div style="width:100%;height:300px;overflow:hidden;" class="w3-border">
+                <div style="width:100%;height:300px;overflow:hidden;">
                     <center>
                         <img src="<?=$z['fotoKT']?>" class="w3-margin-bottom" height="300px"/>
                     </center>

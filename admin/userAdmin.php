@@ -1,6 +1,6 @@
 <!-- Header -->
-<header class="w3-container" style="padding-top:22px">
-    <b><h2><i class="fa fa-users"></i>&nbsp;&nbsp;MANAJEMEN USER ADMIN</h2></b>
+<header class="w3-container">
+    <b><h2><i class="fa fa-users"></i><b>&nbsp;&nbsp;MANAJEMEN USER ADMIN</b></h2></b>
 </header>
 
 <div class="w3-container w3-margin-bottom">
