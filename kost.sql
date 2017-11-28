@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 27, 2017 at 11:34 AM
+-- Generation Time: Nov 27, 2017 at 01:46 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -37,6 +37,13 @@ CREATE TABLE `dataKost` (
   `harga` bigint(12) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `dataKost`
+--
+
+INSERT INTO `dataKost` (`id`, `nama`, `lat`, `long`, `intro`, `harga`) VALUES
+(1, 'Kost pak yayan', '-7.961444960361576', '112.6134740581665', 'Kost enak sekali dekat um dan dekat dengan ub, selain itu didekatnya terdapat pasar setiap pagi sehingga kalo mau beli makanan enak, tidak perlu berjalan jauh-jauh.', 500000);
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +56,16 @@ CREATE TABLE `fasilitasKamar` (
   `kamarIcon` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `fasilitasKamar`
+--
+
+INSERT INTO `fasilitasKamar` (`x`, `id`, `kamarIcon`) VALUES
+(1, 1, 'meja'),
+(2, 1, 'kursi'),
+(3, 1, 'rias'),
+(4, 1, 'kasur');
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +77,14 @@ CREATE TABLE `fasilitasMandi` (
   `id` bigint(12) NOT NULL,
   `mandiIcon` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fasilitasMandi`
+--
+
+INSERT INTO `fasilitasMandi` (`x`, `id`, `mandiIcon`) VALUES
+(1, 1, 'duduk'),
+(2, 1, 'hangat');
 
 -- --------------------------------------------------------
 
@@ -86,6 +111,13 @@ CREATE TABLE `fotoKost` (
   `fotoKM` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `fotoKost`
+--
+
+INSERT INTO `fotoKost` (`id`, `fotoKT`, `fotoKM`) VALUES
+(1, 'fotoKost/profile_1.jpg', 'fotoKost/header_1.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -96,6 +128,13 @@ CREATE TABLE `kapasitasKost` (
   `id_kost` bigint(12) NOT NULL,
   `kapasitas` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kapasitasKost`
+--
+
+INSERT INTO `kapasitasKost` (`id_kost`, `kapasitas`) VALUES
+(1, 5);
 
 -- --------------------------------------------------------
 
@@ -109,6 +148,13 @@ CREATE TABLE `kontakKost` (
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `kontakKost`
+--
+
+INSERT INTO `kontakKost` (`id`, `phone`, `email`) VALUES
+(1, '081234567890', 'yayankucayang@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -121,6 +167,13 @@ CREATE TABLE `ratingKost` (
   `keamanan` smallint(1) NOT NULL,
   `kebersihan` smallint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ratingKost`
+--
+
+INSERT INTO `ratingKost` (`id`, `kenyamanan`, `keamanan`, `kebersihan`) VALUES
+(1, 3, 4, 5);
 
 -- --------------------------------------------------------
 
@@ -157,6 +210,13 @@ CREATE TABLE `spesifikasiKost` (
   `peraturan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `spesifikasiKost`
+--
+
+INSERT INTO `spesifikasiKost` (`id`, `panjangKamar`, `lebarKamar`, `air`, `listrik`, `internet`, `malam`, `peraturan`) VALUES
+(1, 3, 4, 'Termasuk biaya kost', 'Bayar masing-masing', 'Bayar masing-masing', '00:00', 'Jangan membawa lawan jenis ke kostan');
+
 -- --------------------------------------------------------
 
 --
@@ -173,7 +233,7 @@ CREATE TABLE `statistikWeb` (
 --
 
 INSERT INTO `statistikWeb` (`id`, `visitor`) VALUES
-(0, 1);
+(0, 18);
 
 -- --------------------------------------------------------
 
@@ -208,6 +268,7 @@ CREATE TABLE `userBiasa` (
   `belakang` varchar(50) NOT NULL,
   `userBiasa` varchar(10) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `namaKost` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -216,27 +277,8 @@ CREATE TABLE `userBiasa` (
 -- Dumping data for table `userBiasa`
 --
 
-INSERT INTO `userBiasa` (`id`, `depan`, `belakang`, `userBiasa`, `email`, `pass`, `status`) VALUES
-(1, 'Aditya', 'Rahman', 'aditadit', 'adit@adit.com', 'qwe', 0),
-(2, 'sdf', 'sdf', 'df', 'sdf@sd', 'sdf', 0),
-(3, 'sdfsd', 'dfgfd', 'dfgd', 'sfds@fsd', 'q', 0),
-(4, 'ssad', 'wrfsdf', 'dfgdf', 'ffhgf@dfgfd', 'qwe', 0),
-(5, 'sdfgdf', 'dfdg', 'dfgdferer', 'fdgdf@dffdg', 'q', 0),
-(6, 'sdf', 'sdf', 'dsfs', 'asf@sds.com', '1', 1),
-(7, 'dfgdf', 'dfgd', 'fggdf@dfgd', 'fgfhf@fdg', 'q', 0),
-(8, 'fdgfd', 'dfg;', 'gdfg', 'dfgd@minf', '1', 0),
-(9, 'Adit', 'Kuda', 'hfida', 'admin@adit.com', 'asd', 1),
-(10, '', '', 'joko', '', '1', 1),
-(11, 'Joko', 'Darmono', 'jokojoko', 'joko@gmail.com', 'qwe', 0),
-(12, 'Siti', 'Sudarmi', 'kuda', 'sitisiti@gmail.com', 'qwe', 1),
-(13, 'kuda', 'kuda', 'kudakuda', 'admin@sdfs.co', '1', 0),
-(14, 'Amat', 'nyiur', 'qwerty', 'admin@admin.com', 'qwe', 0),
-(15, 'Bambang', 'Rahman', 'root', 'rahmanaditya10@gmail.com', 'q', 1),
-(16, '', '', 'sdfs', '', '', 0),
-(17, 'sdfsd', 'sdf', 'sdfsd', 'ssd@sdfds', 'ert', 0),
-(18, 'Henrico', 'Bambang Sudarmo', 'ricorico', 'henri@gmail.com', 'qwe', 0),
-(19, 'radita', 'ulfa', 'rdtulfa', 'raditaulfa@gmail.com', 'raditha', 1),
-(20, 'fenty', 'ka', 'fentyka', 'fentyka24@yahoo.com', 'qwerty', 1);
+INSERT INTO `userBiasa` (`id`, `depan`, `belakang`, `userBiasa`, `email`, `namaKost`, `pass`, `status`) VALUES
+(21, 'Daniel', 'Imam Supomo', 'aditya', 'adityarahman032@gmail.com', 'Kost pak yayan', 'qwe', 1);
 
 --
 -- Indexes for dumped tables
@@ -324,12 +366,12 @@ ALTER TABLE `userBiasa`
 -- AUTO_INCREMENT for table `fasilitasKamar`
 --
 ALTER TABLE `fasilitasKamar`
-  MODIFY `x` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `x` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `fasilitasMandi`
 --
 ALTER TABLE `fasilitasMandi`
-  MODIFY `x` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `x` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `fotoFoto`
 --
@@ -349,7 +391,7 @@ ALTER TABLE `userAdmin`
 -- AUTO_INCREMENT for table `userBiasa`
 --
 ALTER TABLE `userBiasa`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;COMMIT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

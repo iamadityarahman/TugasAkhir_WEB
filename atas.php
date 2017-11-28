@@ -5,6 +5,13 @@
 <!doctype html>
 <html>
 	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!-- The above 3 meta tags must come first in the head; any other head content must come after these tags -->
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+
 		<title><?=$title?></title>
 		<!-- load stlye dari 23 -->
 		<link rel="stylesheet" type="text/css" href="css/w3.css"/>
@@ -41,7 +48,7 @@
 
 			/* style auto komlit */
 			.kostkost {
-				width: 300px;
+				width: 120%;
 			}
 			.tt-menu {
 				background-color: #FFFFFF;
@@ -195,7 +202,7 @@
 		<div id="warningLogin"></div>
 		<div id="gagalLogin"></div>
 		<div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-			<a charset="w3-large" onclick="location.href='daftarAkun.php'">Belum punya akun?daftar disini</a>
+			<a charset="w3-large" onclick="location.href='daftarAkun.php'" style="cursor: pointer;">Belum punya akun?daftar disini</a>
 			<button type="submit" id="login" name="login" class="w3-right w3-button w3-theme-dark w3-hover-theme">LOGIN</button>
 		</div>
 

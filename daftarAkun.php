@@ -42,7 +42,10 @@
 			</div>
 		</div>
 
+
+
 		<div class="w3-content w3-padding w3-margin-bottom">
+
 			<div class="w3-row w3-center w3-xxlarge w3-margin-bottom">
 				<b>Buat akun KOS-Q</b>
 			</div>
@@ -60,21 +63,27 @@
 				<div class="w3-light-grey w3-padding w3-border w3-margin-top">
 
 					<div class="w3-row-padding w3-margin-top">
-						 <div class="w3-half">
-						 	<input class="w3-input w3-border" type="text" name="depan" placeholder="Nama depan" id="depan" required/>
-						 </div>
-						 <div class="w3-half">
-						 	<input class="w3-input w3-border" type="text" name="belakang" placeholder="Nama belakang" id="belakang" required/>
-						 </div>
+						<div class="w3-half">
+							<input class="w3-input" type="text" name="depan" placeholder="Nama depan" id="depan"/>
+
+							<div id="pesanNama" class="w3-text-red"></div>
+						</div>
+						<div class="w3-half">
+							<input class="w3-input w3-border" type="text" name="belakang" placeholder="Nama belakang" id="belakang"/>
+						</div>
 					</div>
 
 					<div class="w3-row-padding">
 						<div class="w3-row-padding">
 							<div class="w3-row w3-section">
-								<input class="w3-input w3-border" name="username" type="text" placeholder="Username" id="username" required/>
-							</div>					
+								<input class="w3-input w3-border" name="username" type="text" placeholder="Username" id="username"/>
+
+								<div id="pesanUser" class="w3-text-red"></div>
+							</div>				
 							<div class="w3-row w3-section">
-								<input class="w3-input w3-border" name="email" type="email" placeholder="Email" id="email" required/>
+								<input class="w3-input w3-border" name="email" type="email" placeholder="Email" id="email"/>
+
+								<div id="pesanEmail" class="w3-text-red"></div>
 							</div>
 							<div class="w3-row w3-section">
 								<select class="w3-input" name="namaKost">
@@ -89,21 +98,32 @@
 								</select>
 							</div>	
 							<div class="w3-row w3-section">
-								<input class="w3-input w3-border" name="password1" type="password" placeholder="Password" id="password1" required/>
+								<input class="w3-input w3-border" name="password1" type="password" placeholder="Password" id="password1"/>
+
+								<div id="pesanPass" class="w3-text-red"></div>
 							</div>						
 							<div class="w3-row w3-section">
-								<input class="w3-input w3-border" name="password2" type="password" placeholder="Konfirmasi password" required/>
-							</div>					
+								<input class="w3-input w3-border" name="password2" type="password" placeholder="Konfirmasi password" id="password2"/>
+
+								<div id="pesanKonfir" class="w3-text-red"></div>
+							</div>			
 							<div class="w3-row w3-section">
 								<input class="w3-input w3-border w3-flat-belize-hole w3-hover-dark-grey" name="kirim" type="submit" value="Daftar">
-							</div>							
+							</div>
+
+							<div class="w3-panel w3-red w3-display-container">
+								<span onclick="this.parentElement.style.display='none'"
+								class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+								<h3>Pendaftaran gagal!</h3>
+								<p>Username sudah digunakan.</p>
+							</div>
+
 						</div>
 					</div>		
 				</div>
 				</form>
 			</div>
 			<?php
-				include "daftarAkunNext.php";
 				if(isset($_POST['kirim'])) {
 			?>
 				<script>
@@ -112,7 +132,10 @@
 					var username = document.getElementById("username").value = "<?=$_POST['username']?>";
 					document.getElementById("email").value = "<?=$_POST['email']?>";
 				</script>
-			<?php } ?>
+			<?php 
+				}
+				include "daftarAkunNext.php";
+			?>
 		</div>
 
 		<!-- bar bawah waktu gede -->

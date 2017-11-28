@@ -33,9 +33,21 @@
         <div class="w3-container">
 
             <div class="w3-hide-large w3-margin-bottom w3-margin-top">
-                <div class="w3-bar w3-theme w3-margin-bottom w3-padding">
-                    <div class="w3-large w3-center">Tersedia <?=$z['kapasitas']?> Kamar</div>
-                </div>
+                <?php
+                    if($z['kapasitas'] > 0) {
+                ?>
+                        <div class="w3-bar w3-theme w3-margin-bottom w3-padding">
+                            <div class="w3-xlarge w3-center">Tersedia <?=$z['kapasitas']?> Kamar</div>
+                        </div> 
+                <?php
+                    } else {
+                ?>
+                        <div class="w3-bar w3-flat-pomegranate w3-margin-bottom w3-padding">
+                            <div class="w3-xlarge w3-center">Kapasitas penuh</div>
+                        </div>         
+                <?php
+                    }
+                ?>
                 <div class="w3-padding-small w3-medium w3-border">
                     <div class="w3-center"><b>
                         <div class="w3-padding">
@@ -66,9 +78,21 @@
     <div class="w3-col l4 m12 s12">
         <div class="w3-container w3-margin-top w3-margin-bottom">
             <div class="w3-hide-small w3-hide-medium w3-margin-bottom">
-                <div class="w3-bar w3-theme w3-margin-bottom w3-padding">
-                    <div class="w3-xlarge w3-center">Tersedia <?=$z['kapasitas']?> Kamar</div>
-                </div>
+                <?php
+                    if($z['kapasitas'] > 0) {
+                ?>
+                        <div class="w3-bar w3-theme w3-margin-bottom w3-padding">
+                            <div class="w3-xlarge w3-center">Tersedia <?=$z['kapasitas']?> Kamar</div>
+                        </div> 
+                <?php
+                    } else {
+                ?>
+                        <div class="w3-bar w3-flat-pomegranate w3-margin-bottom w3-padding">
+                            <div class="w3-xlarge w3-center">Kapasitas penuh</div>
+                        </div>         
+                <?php
+                    }
+                ?>
                 <div class="w3-padding-small w3-large w3-border">
                     <div class="w3-center"><b>
                         <div class="w3-padding">

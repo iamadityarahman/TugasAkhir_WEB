@@ -21,14 +21,14 @@
 			echo "	<script>
 						setTimeout('location.reload()', 3000);
 					</script>";
-		} elseif($data['login'] != 1) {
-			echo "<div class='w3-bar w3-red w3-center w3-padding'><b>USERNAME/PASSWORD SALAH</b></div>";
 		} elseif($_POST['user'] == null && $_POST['pass'] == null) {
 			echo "<div class='w3-bar w3-red w3-center w3-padding'><b>USERNAME & PASSWORD KOSONG</b></div>";
 		} elseif($_POST['user'] == null) {
 			echo "<div class='w3-bar w3-red w3-center w3-padding'><b>USERNAME KOSONG</b></div>";
 		} elseif($_POST['pass'] == null) {
 			echo "<div class='w3-bar w3-red w3-center w3-padding'><b>PASSWORD KOSONG</b></div>";
+		} elseif($data['login'] != 1) {
+			echo "<div class='w3-bar w3-red w3-center w3-padding'><b>USERNAME/PASSWORD SALAH</b></div>";
 		} elseif($data['status'] == 0) { 
 			echo "<div class='w3-bar w3-red w3-center w3-padding'><b>USER TIDAK TERVERFIKASI</b></div>";
 		}

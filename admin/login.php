@@ -51,7 +51,7 @@
 		<div class="w3-display-middle w3-hide-small">
 			<div class="w3-row w3-card-4 w3-animate-zoom" style="max-width:500px">
 				<div class="w3-center"><br>
-					<img src="../img/2.png" alt="logo" style="width:50%" class="w3-margin">
+					<img src="../img/logo.png" alt="logo" style="width:50%" class="w3-margin">
 				</div>
 
 				<form class="w3-container" method="POST">

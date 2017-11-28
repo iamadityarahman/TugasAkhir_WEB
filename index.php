@@ -37,7 +37,7 @@
 			<?php
 				$sqlsql = "SELECT * FROM dataKost dk
 						   INNER JOIN kapasitasKost kk ON dk.id = kk.id_kost
-						   INNER JOIN fotoKost fk ON dk.id = fk.id";
+						   INNER JOIN fotoKost fk ON dk.id = fk.id WHERE kk.kapasitas > 0 ORDER BY rand()";
 				$queryquery = mysql_query($sqlsql);
 				while($k = mysql_fetch_array($queryquery)) { ?>
 					<div class="w3-col l3 m4 s6">
@@ -102,15 +102,8 @@
 
 
 <br/><br/>
-<!-- kumpulan javasript dkk -->
-<!-- membuat load more -->
+
 <script>
-	/*
-		Load more content with jQuery - May 21, 2013
-		(c) 2013 @ElmahdiMahmoud
-	*/   
-
-
 	$(window).scroll(function(){
 		$(".limitTampil").slice(0, 4).show();
 		if ($(window).scrollTop() == $(document).height() - $(window).height()){
@@ -206,7 +199,7 @@
 			var lat = locations[i][1];
 			var long = locations[i][2];
 			var nama =  locations[i][3];
-			var content = "<h3><a href='tampil.php?id=" + id +"'>" + nama +  "</a></h3>";
+			var content = "<a href='tampil.php?id=" + id +"'>" + nama +  "</a>";
 			var infowindow = new google.maps.InfoWindow();
 			
 			latlngset = new google.maps.LatLng(lat, long);

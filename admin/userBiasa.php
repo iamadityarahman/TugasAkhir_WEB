@@ -12,7 +12,8 @@
 		<table class="w3-table w3-striped w3-bordered w3-hoverable">
 		    <tr>
 		    	<th>ID</th>
-		      	<th>Username</th>
+		      	<th>Nama</th>
+		      	<th>Kost</th>
 		      	<th class="w3-right">Menu</th>
 		    </tr>
 		<?php
@@ -22,7 +23,10 @@
 			<tr>
 				<td class="w3-large"><?=$tyu['id']?></td>
 				<td class="w3-large">
-					<b><?=$tyu['userBiasa']?></b>
+					<b><?=$tyu['depan']?>&nbsp;<?=$tyu['belakang']?></b>
+				</td>				
+				<td class="w3-large">
+					<b><?=$tyu['namaKost']?></b>
 				</td>
 				<td>
 					<span onclick="location.href='hapusUserBiasa.php?id=<?=$tyu['id']?>'" class="w3-hover-light-grey w3-button w3-red w3-large w3-right">
@@ -41,7 +45,7 @@
 									<div class="w3-row w3-section">
 										<input type="text" value="<?=$tyu['userBiasa']?>" name="userBiasa" hidden>
 										<input class="w3-input" type="password" placeholder="Password baru" name="newpass1"/>
-									</div>				
+									</div>	
 									<div class="w3-row w3-section">
 										<input class="w3-input" type="password" placeholder="Konfirmasi password baru" name="newpass2"/>
 									</div>
